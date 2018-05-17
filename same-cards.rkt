@@ -59,17 +59,14 @@
   (lambda (cols cards)
     (map (lambda (parts) (make-buttons parts))
          (partition cols cards))
-    (let ((bottom (new horizontal-pane% [parent *frame*])))
-      (new message% [parent bottom]
-           [label "clicks:"]))
     #t))
 
 (make-deck 9 *cards*)
 
-;(define bottom (new horizontal-pane% [parent *frame*]))
+(define bottom (new horizontal-pane% [parent *frame*]))
 
-;(new message% [parent bottom]
-;     [label "clicks:"])
+(new message% [parent bottom]
+    [label "clicks:"])
 
 (define *total-clicks* (new message% [parent bottom]
                       [label "    "]))
