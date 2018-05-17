@@ -1,11 +1,15 @@
 #!/usr/bin/env racket
 #lang racket/gui
-
+;;;
+;;; same-cards.rkt
+;;; 2018-05-17
 (require "misc.rkt")
 
 (define *clicks* 0)
 (define *values* '())
 (define *buttons* '())
+
+(define *frame* (new frame% [label "same game"]))
 
 (define check
   (lambda (kind)
@@ -20,8 +24,6 @@
                     (send (car *buttons*) set-label " ")
                     (send (cadr *buttons*) set-label " ")
                     "bad")))))
-
-(define *frame* (new frame% [label "same game"]))
 
 (define my-button%
   (class button%
@@ -43,11 +45,6 @@
 
 (define hp (new horizontal-pane% [parent *frame*]))
 
-;; (make-button 1 hp)
-;; (make-button 2 hp)
-;; (make-button 1 hp)
-
-;;(define *cards* (sort (cons 0 (cons 0 (repli 4 (range 1 14)))) <))
 (define *cards* (shuffle (cons 0 (cons 0 (repli 4 (range 1 14))))))
 
 (define make-buttons
@@ -66,7 +63,7 @@
 (define bottom (new horizontal-pane% [parent *frame*]))
 
 (new message% [parent bottom]
-    [label "clicks:"])
+     [label "clicks:"])
 
 (define *total-clicks* (new message% [parent bottom]
                       [label "    "]))

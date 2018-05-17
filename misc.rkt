@@ -3,7 +3,8 @@
 
 (provide
  partition
- repli)
+ repli
+ )
 
 (define repli
   (lambda (n xs)
@@ -29,10 +30,13 @@
 
 (define partition-aux
   (lambda (n xs ret)
-    (if (null? xs) (reverse ret)
-        (let* ((l (take n xs))
-               (r (drop n xs)))
-          (partition-aux n r (cons l ret))))))
+    (cond
+      ((null? xs) (reverse ret))
+      ((< (length xs) n) (reverse (cons xs ret)))
+      (else
+       (let* ((l (take n xs))
+              (r (drop n xs)))
+         (partition-aux n r (cons l ret)))))))
 
 (define partition
   (lambda (n xs)
