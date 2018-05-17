@@ -32,6 +32,7 @@
   (lambda (n xs ret)
     (cond
       ((null? xs) (reverse ret))
+      ;; FIXME, 敗北。length 取らずにできんかね？
       ((< (length xs) n) (reverse (cons xs ret)))
       (else
        (let* ((l (take n xs))
